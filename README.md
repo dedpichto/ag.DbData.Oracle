@@ -207,6 +207,39 @@ Commits transaction.
 void RollbackTransaction();
 ```
 Rolls back transaction.
+#### IDbDataObject asynchronous methods:
+```csharp
+Task<int> ExecuteAsync(string query);
+```
+Asynchronously executes specified SQL query. Returns a task representing the asynchronous operation.
+```csharp
+Task<int> ExecuteAsync(string query, int timeout);
+```
+Asynchronously executes specified SQL query with specified command timeout. Returns a task representing the asynchronous operation.
+```csharp
+Task<int> ExecuteAsync(string query, CancellationToken cancellationToken);
+```
+Asynchronously executes specified SQL query with cancellation token. Returns a task representing the asynchronous operation.
+```csharp
+Task<int> ExecuteAsync(string query, int timeout, CancellationToken cancellationToken);
+```
+Asynchronously executes specified SQL query with command timeout and cancellation token. Returns a task representing the asynchronous operation.
+```csharp
+Task<object> GetScalarAsync(string query);
+```
+Asynchronously gets scalar value for specified SQL query. Returns a task representing the asynchronous operation.
+```csharp
+Task<object> GetScalarAsync(string query, int timeout);
+```
+Asynchronously gets scalar value for specified SQL query with command timeout. Returns a task representing the asynchronous operation.
+```csharp
+Task<object> GetScalarAsync(string query, CancellationToken cancellationToken);
+```
+Asynchronously gets scalar value for specified SQL query with cancellation token. Returns a task representing the asynchronous operation.
+```csharp
+Task<object> GetScalarAsync(string query, int timeout, CancellationToken cancellationToken);
+```
+Asynchronously gets scalar value for specified SQL query with command timeout and cancellation token. Returns a task representing the asynchronous operation.
 
 ## Credits
 ag.DbData.Oracle is built with the following projects:
