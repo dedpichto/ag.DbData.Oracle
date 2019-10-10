@@ -102,7 +102,7 @@ namespace ag.DbData.Oracle
             }
             catch (Exception ex)
             {
-                Logger?.LogError(ex, "Error at BeginTransaction");
+                Logger?.LogError(ex, $"Error at BeginTransaction");
                 throw new DbDataException(ex, "");
             }
         }
@@ -175,7 +175,7 @@ namespace ag.DbData.Oracle
             }
             catch (Exception ex)
             {
-                Logger?.LogError(ex, "Error at FillDataSet");
+                Logger?.LogError(ex, $"Error at FillDataSet; command text: {query}");
                 throw new DbDataException(ex, query);
             }
         }
@@ -207,7 +207,7 @@ namespace ag.DbData.Oracle
             }
             catch (Exception ex)
             {
-                Logger?.LogError(ex, "Error at FillDataTable");
+                Logger?.LogError(ex, $"Error at FillDataTable; command text: {query}");
                 throw new DbDataException(ex, query);
             }
         }
@@ -238,13 +238,14 @@ namespace ag.DbData.Oracle
             }
             catch (Exception ex)
             {
-                Logger?.LogError(ex, "Error at ExecuteCommand");
+                Logger?.LogError(ex, $"Error at ExecuteCommand; command text: {cmd.CommandText}");
                 throw new DbDataException(ex, cmd.CommandText);
             }
             finally
             {
-                if (inTransaction && Connection.State == ConnectionState.Open)
-                    Connection.Close();
+                if (!inTransaction)
+                    if (Connection.State == ConnectionState.Open)
+                        Connection.Close();
             }
         }
         private async Task<int> innerExecuteAsync(string query, CancellationToken cancellationToken, int timeout = -1)
@@ -277,7 +278,7 @@ namespace ag.DbData.Oracle
             }
             catch (Exception ex)
             {
-                Logger?.LogError(ex, "Error at ExecuteCommandAsync");
+                Logger?.LogError(ex, $"Error at ExecuteCommandAsync; command text: {query}");
                 throw new DbDataException(ex, query);
             }
         }
@@ -312,7 +313,7 @@ namespace ag.DbData.Oracle
             }
             catch (Exception ex)
             {
-                Logger?.LogError(ex, "Error at GetScalarAsync");
+                Logger?.LogError(ex, $"Error at GetScalarAsync; command text: {query}");
                 throw new DbDataException(ex, query);
             }
         }
