@@ -1,5 +1,8 @@
 ﻿using ag.DbData.Abstraction;
+using ag.DbData.Abstraction.Services;
+using ag.DbData.Oracle.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -8,7 +11,6 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 
 namespace ag.DbData.Oracle
 {
@@ -23,7 +25,10 @@ namespace ag.DbData.Oracle
         /// </summary>
         /// <param name="logger"><see cref="ILogger"/> object.</param>
         /// <param name="options"><see cref="DbDataSettings"/> options.</param>
-        public OracleDbDataObject(ILogger<IDbDataObject> logger, IOptions<DbDataSettings> options) : base(logger, options) { }
+        /// <param name="stringProviderFactory"><see cref="OracleStringProvider"/> object.</param>
+        public OracleDbDataObject(ILogger<IDbDataObject> logger, IOptions<DbDataSettings> options, IDbDataStringProviderFactory<OracleStringProvider> stringProviderFactory) :
+            base(logger, options, stringProviderFactory.Get())
+        { }
         #endregion
 
         #region Overrides
@@ -102,7 +107,7 @@ namespace ag.DbData.Oracle
             }
             catch (Exception ex)
             {
-                Logger?.LogError(ex, $"Error at BeginTransaction");
+                Logger?.LogError(ex, "Error at BeginTransaction");
                 throw new DbDataException(ex, "");
             }
         }
@@ -255,7 +260,7 @@ namespace ag.DbData.Oracle
                 return await Task.Run(async () =>
                 {
                     int rows;
-                    using (var asyncConnection = new OracleConnection(Connection.ConnectionString))
+                    using (var asyncConnection = new OracleConnection(StringProvider.ConnectionString))
                     {
                         using (var cmd = asyncConnection.CreateCommand())
                         {
@@ -290,7 +295,7 @@ namespace ag.DbData.Oracle
                 return await Task.Run(async () =>
                 {
                     object obj;
-                    using (var asyncConnection = new OracleConnection(Connection.ConnectionString))
+                    using (var asyncConnection = new OracleConnection(StringProvider.ConnectionString))
                     {
                         using (var cmd = asyncConnection.CreateCommand())
                         {
