@@ -30,10 +30,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ag.DbData.Abstraction" Version="2.0.4.5" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.0.0" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.31" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ag.DbData.Abstraction\ag.DbData.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

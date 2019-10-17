@@ -1,6 +1,5 @@
 ﻿using ag.DbData.Abstraction;
 using ag.DbData.Abstraction.Services;
-using ag.DbData.Oracle.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Oracle.ManagedDataAccess.Client;
@@ -25,9 +24,9 @@ namespace ag.DbData.Oracle
         /// </summary>
         /// <param name="logger"><see cref="ILogger"/> object.</param>
         /// <param name="options"><see cref="DbDataSettings"/> options.</param>
-        /// <param name="stringProviderFactory"><see cref="OracleStringProvider"/> object.</param>
-        public OracleDbDataObject(ILogger<IDbDataObject> logger, IOptions<DbDataSettings> options, IDbDataStringProviderFactory<OracleStringProvider> stringProviderFactory) :
-            base(logger, options, stringProviderFactory.Get())
+        /// <param name="stringProvider"><see cref="IDbDataStringProvider"/> object.</param>
+        public OracleDbDataObject(ILogger<IDbDataObject> logger, IOptions<DbDataSettings> options, IDbDataStringProvider stringProvider) :
+            base(logger, options, stringProvider)
         { }
         #endregion
 

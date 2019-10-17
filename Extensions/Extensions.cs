@@ -1,10 +1,10 @@
 ﻿using ag.DbData.Abstraction;
 using ag.DbData.Abstraction.Services;
 using ag.DbData.Oracle.Factories;
-using ag.DbData.Oracle.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace ag.DbData.Oracle.Extensions
 {
@@ -20,8 +20,7 @@ namespace ag.DbData.Oracle.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAgOracle(this IServiceCollection services)
         {
-            services.AddSingleton<OracleStringProvider>();
-            services.AddSingleton<IDbDataStringProviderFactory<OracleStringProvider>, OracleStringProviderFactory>();
+            services.TryAddTransient<IDbDataStringProvider, DbDataStringProvider>();
             services.AddSingleton<IOracleDbDataFactory, OracleDbDataFactory>();
             services.AddTransient<OracleDbDataObject>();
             return services;
