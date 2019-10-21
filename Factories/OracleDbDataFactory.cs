@@ -1,7 +1,7 @@
 ﻿using ag.DbData.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using Oracle.ManagedDataAccess.Client;
+using System;
 
 namespace ag.DbData.Oracle.Factories
 {
@@ -15,6 +15,16 @@ namespace ag.DbData.Oracle.Factories
         /// <summary>
         /// Creates object of type <see cref="OracleDbDataObject"/>.
         /// </summary>
+        /// <returns><see cref="OracleDbDataObject"/> implementation of <see cref="IDbDataObject"/> interface.</returns>
+        public IDbDataObject Create()
+        {
+            var dbObject = _serviceProvider.GetService<OracleDbDataObject>();
+            return dbObject;
+        }
+
+        /// <summary>
+        /// Creates object of type <see cref="OracleDbDataObject"/>.
+        /// </summary>
         /// <param name="connectionString">Database connection string.</param>
         /// <returns><see cref="OracleDbDataObject"/> implementation of <see cref="IDbDataObject"/> interface.</returns>
         public IDbDataObject Create(string connectionString)
@@ -23,8 +33,7 @@ namespace ag.DbData.Oracle.Factories
             dbObject.Connection = new OracleConnection(connectionString);
             return dbObject;
         }
-
-
+        
         /// <summary>
         /// Creates new OracleDbDataFactory object.
         /// </summary>

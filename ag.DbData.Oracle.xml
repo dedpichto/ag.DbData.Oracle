@@ -24,7 +24,7 @@
             <param name="configurationSection">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationSection"/> being bound.</param>
             <returns><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</returns>
         </member>
-        <member name="M:ag.DbData.Oracle.Extensions.Extensions.AddAgOracle(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{ag.DbData.Abstraction.DbDataSettings})">
+        <member name="M:ag.DbData.Oracle.Extensions.Extensions.AddAgOracle(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{ag.DbData.Oracle.OracleDbDataSettings})">
             <summary>
             Appends the registration of <see cref="T:ag.DbData.Oracle.Factories.OracleDbDataFactory"/> and <see cref="T:ag.DbData.Oracle.OracleDbDataObject"/> services to <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> and configures the options.
             </summary>
@@ -39,6 +39,12 @@
             <summary>
             Represents OracleDbDataFactory object.
             </summary>
+        </member>
+        <member name="M:ag.DbData.Oracle.Factories.OracleDbDataFactory.Create">
+            <summary>
+            Creates object of type <see cref="T:ag.DbData.Oracle.OracleDbDataObject"/>.
+            </summary>
+            <returns><see cref="T:ag.DbData.Oracle.OracleDbDataObject"/> implementation of <see cref="T:ag.DbData.Abstraction.IDbDataObject"/> interface.</returns>
         </member>
         <member name="M:ag.DbData.Oracle.Factories.OracleDbDataFactory.Create(System.String)">
             <summary>
@@ -58,7 +64,7 @@
             Represents OracleDbDataObject object.
             </summary>
         </member>
-        <member name="M:ag.DbData.Oracle.OracleDbDataObject.#ctor(Microsoft.Extensions.Logging.ILogger{ag.DbData.Abstraction.IDbDataObject},Microsoft.Extensions.Options.IOptions{ag.DbData.Abstraction.DbDataSettings},ag.DbData.Abstraction.Services.IDbDataStringProvider)">
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.#ctor(Microsoft.Extensions.Logging.ILogger{ag.DbData.Abstraction.IDbDataObject},Microsoft.Extensions.Options.IOptions{ag.DbData.Oracle.OracleDbDataSettings},ag.DbData.Abstraction.Services.IDbDataStringProvider)">
             <summary>
             Creates new instance of <see cref="T:ag.DbData.Oracle.OracleDbDataObject"/>.
             </summary>
@@ -140,6 +146,11 @@
         </member>
         <member name="M:ag.DbData.Oracle.OracleDbDataObject.GetScalarAsync(System.String,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
+        </member>
+        <member name="T:ag.DbData.Oracle.OracleDbDataSettings">
+            <summary>
+            Represents OracleDbDataSettings object, inherited from <see cref="T:ag.DbData.Abstraction.DbDataSettings"/>.
+            </summary>
         </member>
     </members>
 </doc>

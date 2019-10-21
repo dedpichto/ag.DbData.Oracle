@@ -19,15 +19,21 @@ namespace ag.DbData.Oracle
     public class OracleDbDataObject : DbDataObject
     {
         #region ctor
+
         /// <summary>
         /// Creates new instance of <see cref="OracleDbDataObject"/>.
         /// </summary>
         /// <param name="logger"><see cref="ILogger"/> object.</param>
         /// <param name="options"><see cref="DbDataSettings"/> options.</param>
         /// <param name="stringProvider"><see cref="IDbDataStringProvider"/> object.</param>
-        public OracleDbDataObject(ILogger<IDbDataObject> logger, IOptions<DbDataSettings> options, IDbDataStringProvider stringProvider) :
+        public OracleDbDataObject(ILogger<IDbDataObject> logger, IOptions<OracleDbDataSettings> options,
+            IDbDataStringProvider stringProvider) :
             base(logger, options, stringProvider)
-        { }
+        {
+            var connectionString = StringProvider.ConnectionString;
+            if (!string.IsNullOrEmpty(connectionString))
+                Connection = new OracleConnection(connectionString);
+        }
         #endregion
 
         #region Overrides
@@ -153,13 +159,9 @@ namespace ag.DbData.Oracle
                     ? (OracleConnection)TransConnection
                     : (OracleConnection)Connection))
                 {
-                    if (timeout != -1)
-                    {
-                        if (timeout >= 0)
-                            cmd.CommandTimeout = timeout;
-                        else
-                            throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
-                    }
+                    if (!IsValidTimeout(cmd, timeout))
+                        throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
+
                     if (inTransaction)
                         cmd.Transaction = (OracleTransaction)Transaction;
                     using (var da = new OracleDataAdapter(cmd))
@@ -193,13 +195,9 @@ namespace ag.DbData.Oracle
                     ? (OracleConnection)TransConnection
                     : (OracleConnection)Connection))
                 {
-                    if (timeout != -1)
-                    {
-                        if (timeout >= 0)
-                            cmd.CommandTimeout = timeout;
-                        else
-                            throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
-                    }
+                    if (!IsValidTimeout(cmd, timeout))
+                        throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
+
                     if (inTransaction)
                         cmd.Transaction = (OracleTransaction)Transaction;
                     using (var da = new OracleDataAdapter(cmd))
@@ -220,13 +218,9 @@ namespace ag.DbData.Oracle
         {
             try
             {
-                if (timeout != -1)
-                {
-                    if (timeout >= 0)
-                        cmd.CommandTimeout = timeout;
-                    else
-                        throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
-                }
+                if (!IsValidTimeout(cmd, timeout))
+                    throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
+
                 if (inTransaction)
                 {
                     cmd.Connection = (OracleConnection)TransConnection;
@@ -264,13 +258,8 @@ namespace ag.DbData.Oracle
                         using (var cmd = asyncConnection.CreateCommand())
                         {
                             cmd.CommandText = query;
-                            if (timeout != -1)
-                            {
-                                if (timeout >= 0)
-                                    cmd.CommandTimeout = timeout;
-                                else
-                                    throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
-                            }
+                            if (!IsValidTimeout(cmd, timeout))
+                                throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
 
                             await asyncConnection.OpenAsync(cancellationToken);
 
@@ -299,13 +288,8 @@ namespace ag.DbData.Oracle
                         using (var cmd = asyncConnection.CreateCommand())
                         {
                             cmd.CommandText = query;
-                            if (timeout != -1)
-                            {
-                                if (timeout >= 0)
-                                    cmd.CommandTimeout = timeout;
-                                else
-                                    throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
-                            }
+                            if (!IsValidTimeout(cmd, timeout))
+                                throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
 
                             await asyncConnection.OpenAsync(cancellationToken);
 

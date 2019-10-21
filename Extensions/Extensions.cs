@@ -1,10 +1,9 @@
-﻿using ag.DbData.Abstraction;
-using ag.DbData.Abstraction.Services;
+﻿using ag.DbData.Abstraction.Services;
 using ag.DbData.Oracle.Factories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System;
 
 namespace ag.DbData.Oracle.Extensions
 {
@@ -35,7 +34,11 @@ namespace ag.DbData.Oracle.Extensions
         public static IServiceCollection AddAgOracle(this IServiceCollection services, IConfigurationSection configurationSection)
         {
             services.AddAgOracle();
-            services.Configure<DbDataSettings>(configurationSection);
+            services.Configure<OracleDbDataSettings>(opts =>
+            {
+                opts.AllowExceptionLogging = configurationSection.GetValue<bool>("AllowExceptionLogging");
+                opts.ConnectionString = configurationSection.GetValue<string>("ConnectionString");
+            });
             return services;
         }
 
@@ -46,7 +49,7 @@ namespace ag.DbData.Oracle.Extensions
         /// <param name="configureOptions">The action used to configure the options.</param>
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAgOracle(this IServiceCollection services,
-            Action<DbDataSettings> configureOptions)
+            Action<OracleDbDataSettings> configureOptions)
         {
             services.AddAgOracle();
             services.Configure(configureOptions);

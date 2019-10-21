@@ -1,8 +1,9 @@
 ﻿
 // add section to settings file (optional)
 {
-  "DbDataSettings": {
-    "AllowExceptionLogging": false // default is "true" 
+  "OracleDbDataSettings": {
+    "AllowExceptionLogging": false, // optional, default is "true"
+    "ConnectionString": "YOUR_CONNECTION_STRING" // optional
   }
 }
 
@@ -19,11 +20,12 @@ using ag.DbData.Oracle.Factories;
 		// ...
 		services.AddAgOracle();
 		// or
-		services.AddAgOracle(config.GetSection("DbDataSettings"));
+		services.AddAgOracle(config.GetSection("OracleDbDataSettings"));
 		// or
 		services.AddAgOracle(opts =>
         {
-            opts.AllowExceptionLogging = false; 
+            opts.AllowExceptionLogging = false; // optional
+			opts.ConnectionString = YOUR_CONNECTION_STRING; // optional
         });
 
 ***************************************************************************************************
@@ -42,6 +44,20 @@ using ag.DbData.Oracle.Factories;
 // OracleDbDataObject implements IDisposable interface, so use it into 'using' directive
 
         using (var oracleDbData = _oracleFactory.Create(YOUR_CONNECTION_STRING))
+        {
+            using (var t = oracleDbData.FillDataTable("SELECT * FROM YOUR_TABLE"))
+            {
+                foreach (DataRow r in t.Rows)
+                {
+                    Console.WriteLine(r[0]);
+                }
+            }
+        }
+
+// in case you have defined connection string in configuration setting you may call Create() method
+// without parameter
+
+        using (var oracleDbData = _oracleFactory.Create())
         {
             using (var t = oracleDbData.FillDataTable("SELECT * FROM YOUR_TABLE"))
             {
