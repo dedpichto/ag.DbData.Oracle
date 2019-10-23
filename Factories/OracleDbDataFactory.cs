@@ -8,7 +8,7 @@ namespace ag.DbData.Oracle.Factories
     /// <summary>
     /// Represents OracleDbDataFactory object.
     /// </summary>
-    public class OracleDbDataFactory : IOracleDbDataFactory
+    internal class OracleDbDataFactory : IOracleDbDataFactory
     {
         private readonly IServiceProvider _serviceProvider;
 

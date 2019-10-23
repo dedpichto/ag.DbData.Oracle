@@ -16,7 +16,7 @@ namespace ag.DbData.Oracle
     /// <summary>
     /// Represents OracleDbDataObject object.
     /// </summary>
-    public class OracleDbDataObject : DbDataObject
+    internal class OracleDbDataObject : DbDataObject
     {
         #region ctor
 
