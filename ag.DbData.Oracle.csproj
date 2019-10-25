@@ -9,6 +9,7 @@
     <RepositoryUrl>https://github.com/dedpichto/ag.DbData.Oracle</RepositoryUrl>
     <PackageProjectUrl>https://github.com/dedpichto/ag.DbData.Oracle</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReleaseNotes>Added ConnectionString to settings, added parameterless Create() method (see readme file for more information)</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,13 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ag.DbData.Abstraction" Version="3.0.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.0.0" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.50" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ag.DbData.Abstraction\ag.DbData.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>
