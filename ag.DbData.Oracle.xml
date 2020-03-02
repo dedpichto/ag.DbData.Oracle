@@ -123,6 +123,9 @@
         <member name="M:ag.DbData.Oracle.OracleDbDataObject.BeginTransaction(System.String)">
             <inheritdoc />
         </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.BeginTransaction">
+            <inheritdoc />
+        </member>
         <member name="M:ag.DbData.Oracle.OracleDbDataObject.ExecuteAsync(System.String)">
             <inheritdoc />
         </member>
