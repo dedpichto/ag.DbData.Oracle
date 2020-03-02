@@ -216,6 +216,10 @@ object GetScalarInTransaction(string query, int timeout);
 ```
 Gets scalar value for specified SQL query and command timeout in transaction. Returns ```object```.
 ```csharp
+bool BeginTransaction();
+```
+Begins transaction on current database. Returns ```true``` if transaction has been started, ```false``` otherwise.
+```csharp
 bool BeginTransaction(string connectionString);
 ```
 Begins transaction on database specified in connection string. Returns ```true``` if transaction has been started, ```false``` otherwise.
