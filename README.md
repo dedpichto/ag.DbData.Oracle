@@ -172,6 +172,14 @@ DbDataReader GetDataReader(string query, int timeout);
 ```
 Gets ```DbDataReader``` for specified SQL query with specified command timeout. Returns ```DataReader```.
 ```csharp
+DbDataReader GetDataReader(string query, CommandBehavior commandBehavior);
+```
+Gets ```DbDataReader``` for specified SQL query, using one of the ```CommandBehavior``` values. Returns ```DataReader```.
+```csharp
+DbDataReader GetDataReader(string query, CommandBehavior commandBehavior, int timeout);
+```
+Gets ```DbDataReader``` for specified SQL query with specified command timeout, using one of the ```CommandBehavior``` values. Returns ```DataReader```.
+```csharp
 int ExecuteCommand(DbCommand cmd);
 ```
 Executes ```DbCommand```. Returns number of rows affected by execution.
