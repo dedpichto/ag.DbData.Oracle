@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>3.0.0.3</Version>
+    <Version>3.0.0.4</Version>
     <Authors>Andrey Gruber</Authors>
     <Description>Simplifies working with Oracle databases in .NET Framework, .NET Core and .NET Standard projects</Description>
     <PackageTags>Database, Oracle, ADO.NET, .NET, Core, Snandard, Framework</PackageTags>
     <RepositoryUrl>https://github.com/dedpichto/ag.DbData.Oracle</RepositoryUrl>
     <PackageProjectUrl>https://github.com/dedpichto/ag.DbData.Oracle</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageReleaseNotes>Added parameterless BeginTransaction() method</PackageReleaseNotes>
+    <PackageReleaseNotes>Dependencies updated to latest versions</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -31,10 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ag.DbData.Abstraction" Version="3.0.0.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.2" />
-    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.60" />
+    <PackageReference Include="ag.DbData.Abstraction" Version="3.0.0.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.6" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.80" />
   </ItemGroup>
 
 </Project>
