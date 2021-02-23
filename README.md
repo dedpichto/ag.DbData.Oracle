@@ -148,6 +148,22 @@ DataTable FillDataTableInTransaction(string query, int timeout);
 ```
 Fills ```DataTable``` in transaction accordingly to specified SQL query and command timeout. Returns ```DataTable```.
 ```csharp
+DataTable FillDataTable(DbCommand dbCommand);
+```
+Fills ```DataTable``` accordingly to specified ```DbCommand```. Returns ```DataTable```.
+```csharp
+DataTable FillDataTable(DbCommand dbCommand, int timeout);
+```
+Fills ```DataTable``` accordingly to specified ```DbCommand``` with command timeout. Returns ```DataTable```.
+```csharp
+DataTable FillDataTableInTransaction(DbCommand dbCommand);
+```
+Fills ```DataTable``` in transaction accordingly to specified ```DbCommand```. Returns ```DataTable```.
+```csharp
+DataTable FillDataTableInTransaction(DbCommand dbCommand, int timeout);
+```
+Fills ```DataTable``` in transaction accordingly to specified ```DbCommand``` with command timeout. Returns ```DataTable```.
+```csharp
 int Execute(string query);
 ```
 Executes specified query. Returns numbers of rows affected by execution.
