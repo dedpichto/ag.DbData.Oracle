@@ -76,6 +76,18 @@ namespace ag.DbData.Oracle
             innerFillDataTable(query, timeout, true);
 
         /// <inheritdoc />
+        public override DataTable FillDataTable(DbCommand dbCommand) => innerFillDataTable((OracleCommand)dbCommand, -1, false);
+
+        /// <inheritdoc />
+        public override DataTable FillDataTable(DbCommand dbCommand, int timeout) => innerFillDataTable((OracleCommand)dbCommand, timeout, false);
+
+        /// <inheritdoc />
+        public override DataTable FillDataTableInTransaction(DbCommand dbCommand) => innerFillDataTable((OracleCommand)dbCommand, -1, true);
+
+        /// <inheritdoc />
+        public override DataTable FillDataTableInTransaction(DbCommand dbCommand, int timeout) => innerFillDataTable((OracleCommand)dbCommand, timeout, true);
+
+        /// <inheritdoc />
         public override int ExecuteCommand(DbCommand cmd) => innerExecuteCommand((OracleCommand)cmd, -1, false);
 
         /// <inheritdoc />
@@ -225,6 +237,32 @@ namespace ag.DbData.Oracle
             }
         }
 
+        private DataTable innerFillDataTable(OracleCommand command, int timeout, bool inTransaction)
+        {
+            try
+            {
+                var table = new DataTable();
+                command.Connection = inTransaction
+                    ? (OracleConnection)TransConnection
+                    : (OracleConnection)Connection;
+                if (!IsValidTimeout(command, timeout))
+                    throw new ArgumentException("Invalid CommandTimeout value", nameof(timeout));
+
+                if (inTransaction)
+                    command.Transaction = (OracleTransaction)Transaction;
+                using (var da = new OracleDataAdapter(command))
+                {
+                    da.Fill(table);
+                }
+                return table;
+            }
+            catch (Exception ex)
+            {
+                Logger?.LogError(ex, $"Error at FillDataTable; command text: {command.CommandText}");
+                throw new DbDataException(ex, command.CommandText);
+            }
+        }
+
         private int innerExecuteCommand(OracleCommand cmd, int timeout, bool inTransaction)
         {
             try
@@ -257,6 +295,7 @@ namespace ag.DbData.Oracle
                         Connection.Close();
             }
         }
+
         private async Task<int> innerExecuteAsync(string query, CancellationToken cancellationToken, int timeout = -1)
         {
             try

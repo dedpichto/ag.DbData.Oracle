@@ -108,6 +108,18 @@
         <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTableInTransaction(System.String,System.Int32)">
             <inheritdoc />
         </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTable(System.Data.Common.DbCommand)">
+            <inheritdoc />
+        </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTable(System.Data.Common.DbCommand,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTableInTransaction(System.Data.Common.DbCommand)">
+            <inheritdoc />
+        </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTableInTransaction(System.Data.Common.DbCommand,System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="M:ag.DbData.Oracle.OracleDbDataObject.ExecuteCommand(System.Data.Common.DbCommand)">
             <inheritdoc />
         </member>
