@@ -419,6 +419,34 @@ Task<object> GetScalarAsync(string query, int timeout, CancellationToken cancell
 
 Asynchronously gets scalar value for specified SQL query with command timeout and cancellation token. Returns a task representing the asynchronous operation.
 
+```csharp
+Task<DataTable> FillDataTableAsync(string query);
+```
+
+Asynchronously fills ```DataTable``` accordingly to specified SQL query.
+Returns a task representing the asynchronous operation.
+
+```csharp
+Task<DataTable> FillDataTableAsync(string query, int timeout);
+```
+
+Asynchronously fills ```DataTable``` accordingly to specified SQL query with command timeout.
+Returns a task representing the asynchronous operation.
+
+```charp
+Task<DataTable> FillDataTableAsync(string query, CancellationToken cancellationToken);
+```
+
+Asynchronously fills ```DataTable``` accordingly to specified SQL query with cancellation token.
+Returns a task representing the asynchronous operation.
+
+```csharp
+Task<DataTable> FillDataTableAsync(string query, int timeout, CancellationToken cancellationToken);
+```
+
+Asynchronously fills ```DataTable``` accordingly to specified SQL query with command timeout and cancellation token.
+Returns a task representing the asynchronous operation.
+
 ## Credits
 
 ag.DbData.Oracle is built with the following projects:
