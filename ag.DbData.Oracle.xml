@@ -162,6 +162,18 @@
         <member name="M:ag.DbData.Oracle.OracleDbDataObject.GetScalarAsync(System.String,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTableAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTableAsync(System.String,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTableAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:ag.DbData.Oracle.OracleDbDataObject.FillDataTableAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:ag.DbData.Oracle.OracleDbDataSettings">
             <summary>
             Represents OracleDbDataSettings object, inherited from <see cref="T:ag.DbData.Abstraction.DbDataSettings"/>.
