@@ -32,8 +32,8 @@
 
   <ItemGroup>
     <PackageReference Include="ag.DbData.Abstraction" Version="3.0.0.7" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.6" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.80" />
   </ItemGroup>
 
