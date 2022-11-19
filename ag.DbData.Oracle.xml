@@ -53,6 +53,13 @@
             <param name="connectionString">Database connection string.</param>
             <returns><see cref="T:ag.DbData.Oracle.OracleDbDataObject"/> implementation of <see cref="T:ag.DbData.Abstraction.IDbDataObject"/> interface.</returns>
         </member>
+        <member name="M:ag.DbData.Oracle.Factories.OracleDbDataFactory.Create(System.Int32)">
+            <summary>
+            Creates object of type <see cref="T:ag.DbData.Oracle.OracleDbDataObject"/>.
+            </summary>
+            <param name="defaultCommandTimeOut">Replaces default coommand timeout of provider</param>
+            <returns></returns>
+        </member>
         <member name="M:ag.DbData.Oracle.Factories.OracleDbDataFactory.#ctor(System.IServiceProvider)">
             <summary>
             Creates new OracleDbDataFactory object.

@@ -133,6 +133,20 @@ IDbDataObject Create(string connectionString)
 
 Creates ```IDbDataObject```, specifying database connection string.
 
+```csharp
+IDbDataObject Create(int defaultCommandTimeout)
+```
+
+Creates ```IDbDataObject```, specifying default command timeout.
+
+#### IDbDataObject properties
+
+```csharp
+int? DefaultCommandTimeout { get;set; }
+```
+
+Defines default command timeout.
+
 #### IDbDataObject methods
 
 ```csharp
